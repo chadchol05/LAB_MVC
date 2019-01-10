@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class secound extends AppCompatActivity {
 
-    Button btnNext,butmvc;
+    Button btnNext, butmvc, butthome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +32,15 @@ public class secound extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        butthome = (Button) findViewById(R.id.button3);
+        butthome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(secound.this, profile.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -21,7 +21,7 @@ public class mvc_dg extends AppCompatActivity {
 
         objAlert  = new AlertDialog.Builder(context);
         objAlert.setIcon(R.drawable.danger);
-        //objAlert.setTile("Please Choose Answer ?");
+        objAlert.setTitle("Please Choose Answer ?");
         objAlert.setMessage("Please on Rabutton");
         objAlert.setCancelable(false);
         objAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {

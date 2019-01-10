@@ -1,12 +1,14 @@
 package moo.ruts.ac.th.lab;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class mvc extends AppCompatActivity {
     private ImageView imvAnimal;
@@ -16,6 +18,7 @@ public class mvc extends AppCompatActivity {
     private Question objQuestion;
     private mvc_dg objMyAlertDialog;
     private int intTime = 1, intUserChoose, intUserScore;
+    private MediaPlayer objmedPlayerbut,objmediaPlayerRDbutt;
     private int intUserChooseArray[],intTrueAnswerArray[];
 
 
@@ -75,13 +78,19 @@ public class mvc extends AppCompatActivity {
                         strAnswer = null;
                         break;
                 }
+                sondRDbutt();
+                ToaseMessage();
             }
         });
 
     }
     private void setVauleToQuestion(){
-        if (intTime ==4){
-            intTime = 0;
+        if (intTime == 4){
+            //intTime = 0;
+
+            if (intUserScore == 3){
+                intUserScore++;
+            }
             Intent intent = new Intent(mvc.this,mvc_score.class);
             intent.putExtra("Score",intUserScore);
             startActivity(intent);
@@ -114,13 +123,29 @@ public class mvc extends AppCompatActivity {
 
     public void chckChooseAnswer(){
         if (strAnswer != null){
+            Log.d("masterUNG","strAnswer= " + strAnswer);
             setVauleToQuestion();
             checkScore();
             intTime++;
         }else {
+            Log.d("masterUNG", "Please CH Something");
             objMyAlertDialog =new mvc_dg();
             objMyAlertDialog.NoChooseEveryThing(mvc.this);
         }
-
+        sounButt();
     }
+
+    private void sounButt(){
+        objmedPlayerbut = MediaPlayer.create(getBaseContext(),R.raw.effect_btn_shut);
+        objmedPlayerbut.start();
+     }
+
+     private void sondRDbutt(){
+        objmediaPlayerRDbutt = MediaPlayer.create(getBaseContext(),R.raw.phonton1);
+        objmediaPlayerRDbutt.start();
+     }
+
+     private void ToaseMessage(){
+         Toast.makeText(mvc.this,"Are You Sure Your Answer is " + strAnswer,500).show();
+     }
 }
